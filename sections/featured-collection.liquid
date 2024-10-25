@@ -6,7 +6,53 @@
 
 {% assign featured_collection = collections.all %}
 
+{% comment %} 
+<ul
+  class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+  role="list"
+>
+  {%- for collection in collections -%}
+    <li
+      class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+        style="--animation-order: {{ forloop.index }};"
+      {% endif %}
+    >
+      {% render 'card-collection',
+        card_collection: collection,
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: 3
+      %}
+    </li>
+  {%- endfor -%}
+</ul> {% endcomment %}
+
+
 <div class="px-11 py-8">
+  <div class="max-w-l mx-auto">
+
+
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+      {% for product in featured_collection.products %}
+
+
+        {% render 'card-product', product: product %}
+
+      {% else %}
+        <p>There are no products inside of this collection</p>
+      {% endfor %}
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+{% comment %} <div class="px-11 py-8">
   <div class="max-w-l mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
       {% for product in featured_collection.products %}
@@ -17,4 +63,4 @@
       {% endfor %}
     </div>
   </div>
-</div>
+</div> {% endcomment %}
