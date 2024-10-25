@@ -84,8 +84,6 @@
     }
   },
   "order": [
-    "rich_text",
-    "collage-0",
     "featured-collection"
   ]
 }
