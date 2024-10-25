@@ -2,21 +2,38 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
-<div class="px-4 py-8">
-  {% paginate collection.products by 6 %}
-
+<div
+  class="product-grid-container scroll-trigger animate--slide-in px-4 py-8"
+  id="ProductGridContainer"
+  data-cascade
+>
+  {% paginate collection.products by 10 %}
     <h1 class="text-center text-5xl font-sans text-black ">{{ collection.title }}</h1>
 
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {% for product in collection.products %}
-          {% render 'card-product', product: product %}
+    <!-- Lista de productos -->
+    <ul
+      id="product-grid"
+      data-id="{{ section.id }}"
+      class="
+        grid product-grid grid--2-col-tablet-down
+        grid--4-col-desktop
+      "
+    >
 
-        {% else %}
-          <p>There are no products inside of this collection</p>
-        {% endfor %}
-      </div>
-    </div>
+      {% for product in collection.products %}
+        <!-- Cada productos -->
+        <li
+          class="grid__item scroll-trigger animate--slide-in"
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+        >
+          {% render 'card-product', product: product %}
+        </li>
+
+      {% else %}
+        <p>There are no products inside of this collection</p>
+      {% endfor %}
+    </ul>
 
     {% render 'pagination', pagination: paginate %}
   {% endpaginate %}
