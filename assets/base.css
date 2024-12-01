@@ -1330,6 +1330,12 @@ shopify-accelerated-checkout-cart {
 }
 
 
+/* Menu item selected - aria */
+
+a[aria-current="page"] {
+  color: #d28930; /* Choose the color you want for the current page link */
+}
+
 /* Button - other */
 
 .button:disabled,
@@ -2823,10 +2829,9 @@ details[open] > .header__menu-item .icon-caret {
 }
 
 .header__active-menu-item {
+  font-weight: 700;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   transition: text-decoration-thickness var(--duration-short) ease;
-  color: rgb(var(--color-foreground));
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
 }
 
 .header__menu-item:hover .header__active-menu-item {
